@@ -7,9 +7,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+
+
 // setup database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://admin:klTNGA8doRsoGFQm@cluster0-lh6dg.mongodb.net/test?retryWrites=true')
+mongoose.connect('mongodb+srv://admin:klTNGA8doRsoGFQm@cluster0-lh6dg.mongodb.net/test?retryWrites=true',{useNewUrlParser: true})
 .then(()=> console.log('DB Connection successful'))
 .catch((err) => console.log(err));
 
@@ -35,6 +37,12 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+//passport config
+const User = require('./models/User');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
