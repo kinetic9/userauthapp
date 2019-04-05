@@ -23,6 +23,7 @@ userController.doRegister = (req,res) =>{
         }
 
         passport.authenticate('local')(req, res, ()=>{
+            console.log('Registration was successful..');
             res.redirect('/');
         });
     });
@@ -36,6 +37,7 @@ userController.login = (req,res)=>{
 //Post login
 userController.doLogin =(req,res)=>{
     passport.authenticate('local')(req,res, ()=>{
+        console.log('LogIn was successful..');
         res.redirect('/');
     });
 };
@@ -43,6 +45,7 @@ userController.doLogin =(req,res)=>{
 //Log out
 userController.logout = (req, res)=>{
     req.logout();
+    console.log('LogOut was successful..');
     res.redirect('/');
 };
 
