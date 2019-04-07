@@ -11,7 +11,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 // setup database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://admin:klTNGA8doRsoGFQm@cluster0-lh6dg.mongodb.net/test?retryWrites=true',{useNewUrlParser: true})
+mongoose.connect('mongodb+srv://admin:klTNGA8doRsoGFQm@cluster0-lh6dg.mongodb.net/zaio?retryWrites=true',{useNewUrlParser: true})
 .then(()=> console.log('DB Connection successful'))
 .catch((err) => console.log(err));
 
